@@ -17,7 +17,6 @@
 <script>
 import countTo from "vue-count-to";
 import Fact from "~/components/Fact";
-import axios from "axios";
 export default {
   components: {
     countTo,
@@ -47,7 +46,7 @@ export default {
       this.fact = "Thinking...";
       try {
         // TODO: Find a way to check if there is no connection
-        const res = await axios.get(`http://numbersapi.com/${number}`);
+        const res = await this.$axios.get(`http://numbersapi.com/${number}`);
         this.fact = res.data;
       } catch (error) {
         console.log(error.message);
