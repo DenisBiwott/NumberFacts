@@ -8,7 +8,7 @@
         :duration="duration"
       ></countTo>
       <Fact @submit="doCounter" />
-      <h2>Interesting Fact 😏</h2>
+      <h2>Interesting Fact</h2>
       <h3>{{ fact }}</h3>
     </div>
   </div>
@@ -49,8 +49,23 @@ export default {
         const res = await this.$axios.get(`http://numbersapi.com/${number}`);
         this.fact = res.data;
       } catch (error) {
-        console.log(error.message);
-        throw error.message;
+        // Incase there is no connection
+        if (
+          !window.navigator.onLine &&
+          !error.response &&
+          error.code === "ERR_NETWORK"
+        ) {
+          this.fact = "Please check your connection";
+
+          // Listen for when we are back online
+          window.addEventListener("online", (e) => {
+            this.fact = "Back online... Give me a sec";
+            // Fetch the fact when we are back online
+            setTimeout(() => {
+              this.fetchFact(number);
+            }, 2000);
+          });
+        }
       }
     },
   },
