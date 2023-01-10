@@ -10,6 +10,7 @@
       <Fact @submit="doCounter" />
       <h2>Interesting Fact</h2>
       <h3>{{ fact }}</h3>
+      <NuxtLink to="/about">About</NuxtLink>
     </div>
   </div>
 </template>
