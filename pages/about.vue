@@ -6,7 +6,7 @@
       laudantium cupiditate tenetur fugit, quos minus repellendus provident quae
       eligendi odio!
     </p>
-    <button>Back to Home</button>
+    <NuxtLink to="/">Back Home</NuxtLink>
   </div>
 </template>
 

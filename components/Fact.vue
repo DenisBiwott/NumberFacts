@@ -1,7 +1,7 @@
 <template>
   <div class="fact">
     <form @submit.prevent="onSubmit">
-      <input v-model="num" placeholder="0" />
+      <input v-model="num" placeholder="0" ref="input" />
       <input type="submit" value="Get Fact" />
     </form>
     <br />
@@ -20,6 +20,10 @@ export default {
     onSubmit() {
       this.$emit("submit", this.num);
     },
+  },
+  // Focus on the input field on mount
+  mounted() {
+    this.$refs.input.focus();
   },
 };
 </script>
